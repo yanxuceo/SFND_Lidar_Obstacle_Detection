@@ -67,11 +67,15 @@ NOTE: very old version
 ## To-Do List 
 
 ### 1. RANSAC Implementation
-
 #### 2D - Line Fitting Practice
 
 #### 3D - Plane Segmentation
+[In doc/RANSAC.md](doc/RANSAC.md)
+
+
 
 ### 2. KdTree Implementation
+[In doc/KdTree.md](doc/KdTree.md)
 
 ### 3. Point Cloud Clustering
+[In doc/Clustering.md](doc/Clustering.md)
