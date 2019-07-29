@@ -62,3 +62,16 @@ NOTE: very old version
 [PCL Source Github](https://github.com/PointCloudLibrary/pcl)
 
 [PCL Mac Compilation Docs](http://www.pointclouds.org/documentation/tutorials/compiling_pcl_macosx.php)
+
+
+## To-Do List 
+
+### 1. RANSAC Implementation
+
+#### 2D - Line Fitting Practice
+
+#### 3D - Plane Segmentation
+
+### 2. KdTree Implementation
+
+### 3. Point Cloud Clustering
