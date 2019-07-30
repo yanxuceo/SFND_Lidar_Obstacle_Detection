@@ -2,7 +2,6 @@
 
 #include "processPointClouds.h"
 
-
 //constructor:
 template<typename PointT>
 ProcessPointClouds<PointT>::ProcessPointClouds()
@@ -11,14 +10,12 @@ ProcessPointClouds<PointT>::ProcessPointClouds()
 
 }
 
-
 //de-constructor:
 template<typename PointT>
 ProcessPointClouds<PointT>::~ProcessPointClouds() 
 {
     delete tree;
 }
-
 
 template<typename PointT>
 void ProcessPointClouds<PointT>::numPoints(typename pcl::PointCloud<PointT>::Ptr cloud)
@@ -30,7 +27,6 @@ void ProcessPointClouds<PointT>::numPoints(typename pcl::PointCloud<PointT>::Ptr
 template<typename PointT>
 typename pcl::PointCloud<PointT>::Ptr ProcessPointClouds<PointT>::FilterCloud(typename pcl::PointCloud<PointT>::Ptr cloud, float filterRes, Eigen::Vector4f minPoint, Eigen::Vector4f maxPoint)
 {
-
     // Time segmentation process
     auto startTime = std::chrono::steady_clock::now();
 
@@ -67,7 +63,6 @@ typename pcl::PointCloud<PointT>::Ptr ProcessPointClouds<PointT>::FilterCloud(ty
 	extract.setIndices(inliers);
 	extract.setNegative(true);
 	extract.filter(*cloudRegion);
-
 
     auto endTime = std::chrono::steady_clock::now();
     auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
@@ -142,7 +137,6 @@ std::pair<typename pcl::PointCloud<PointT>::Ptr, typename pcl::PointCloud<PointT
 		y3 = cloud->points[*itr].y;
 		z3 = cloud->points[*itr].z;
 
-
 		i = (y2-y1)*(z3-z1) - (z2-z1)*(y3-y1);
 		j = (z2-z1)*(x3-x1) - (x2-x1)*(z3-z1);
 		k = (x2-x1)*(y3-y1) - (y2-y1)*(x3-x1);
@@ -175,9 +169,9 @@ std::pair<typename pcl::PointCloud<PointT>::Ptr, typename pcl::PointCloud<PointT
 	}
 
     typename pcl::PointCloud<PointT>::Ptr  cloudInliers(new pcl::PointCloud<PointT>());
-	typename pcl::PointCloud<PointT>::Ptr  cloudOutliers(new pcl::PointCloud<PointT>());
+    typename pcl::PointCloud<PointT>::Ptr  cloudOutliers(new pcl::PointCloud<PointT>());
 
-	for(int index = 0; index < cloud->points.size(); index++)
+    for(int index = 0; index < cloud->points.size(); index++)
 	{
 		PointT point = cloud->points[index];
 		if(inliersResult.count(index))
@@ -218,7 +212,7 @@ std::vector<typename pcl::PointCloud<PointT>::Ptr> ProcessPointClouds<PointT>::C
     	tree->insert3D(cloud->points[i],i); 
 
     std::vector<std::vector<int>> index_clusters;
-	std::vector<bool> processed(cloud_size, false);
+    std::vector<bool> processed(cloud_size, false);
 
 	int i = 0;
 	while(i < cloud_size)
@@ -256,7 +250,6 @@ std::vector<typename pcl::PointCloud<PointT>::Ptr> ProcessPointClouds<PointT>::C
 template<typename PointT>
 Box ProcessPointClouds<PointT>::BoundingBox(typename pcl::PointCloud<PointT>::Ptr cluster)
 {
-
     // Find bounding box for one of the clusters
     PointT minPoint, maxPoint;
     pcl::getMinMax3D(*cluster, minPoint, maxPoint);
@@ -300,7 +293,6 @@ typename pcl::PointCloud<PointT>::Ptr ProcessPointClouds<PointT>::loadPcd(std::s
 template<typename PointT>
 std::vector<boost::filesystem::path> ProcessPointClouds<PointT>::streamPcd(std::string dataPath)
 {
-
     std::vector<boost::filesystem::path> paths(boost::filesystem::directory_iterator{dataPath}, boost::filesystem::directory_iterator{});
 
     // sort files in accending order so playback is chronological
