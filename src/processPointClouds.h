@@ -97,22 +97,28 @@ template <typename PointT> class ProcessPointClouds {
         }
 
         uint cd = depth % 3;
-        if (cd == 0) {
-          if ((target.x - distanceTol) < node->point.x)
-            searchHelper3D(target, node->left, depth + 1, distanceTol, ids);
-          if ((target.x + distanceTol) > node->point.x)
-            searchHelper3D(target, node->right, depth + 1, distanceTol, ids);
-        } else if (cd == 1) {
-          if ((target.y - distanceTol) < node->point.y)
-            searchHelper3D(target, node->left, depth + 1, distanceTol, ids);
-          if ((target.y + distanceTol) > node->point.y)
-            searchHelper3D(target, node->right, depth + 1, distanceTol, ids);
-        } else {
-          if ((target.z - distanceTol) < node->point.z)
-            searchHelper3D(target, node->left, depth + 1, distanceTol, ids);
-          if ((target.z + distanceTol) > node->point.z)
-            searchHelper3D(target, node->right, depth + 1, distanceTol, ids);
+        switch(cd)
+        {
+          case 0: {
+              if ((target.x - distanceTol) < node->point.x)
+                  searchHelper3D(target, node->left, depth + 1, distanceTol, ids);
+              if ((target.x + distanceTol) > node->point.x)
+                  searchHelper3D(target, node->right, depth + 1, distanceTol, ids);
+          } break;
+          case 1: {
+              if ((target.y - distanceTol) < node->point.y)
+                  searchHelper3D(target, node->left, depth + 1, distanceTol, ids);
+              if ((target.y + distanceTol) > node->point.y)
+                  searchHelper3D(target, node->right, depth + 1, distanceTol, ids);
+          } break;
+          case 2: {
+              if ((target.z - distanceTol) < node->point.z)
+                  searchHelper3D(target, node->left, depth + 1, distanceTol, ids);
+              if ((target.z + distanceTol) > node->point.z)
+                  searchHelper3D(target, node->right, depth + 1, distanceTol, ids);
+          } break;
         }
+
       }
     }
 
