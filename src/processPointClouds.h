@@ -73,7 +73,7 @@ template <typename PointT> class ProcessPointClouds {
     }
 
     void insert3D(PointT point, int id) {
-      // TODO: Fill in this function to insert a new point into the tree
+      // Fill in this function to insert a new point into the tree
       // the function should create a new node and place correctly with in the
       // root
     	insertHelper3D(&root, 0, point, id);
