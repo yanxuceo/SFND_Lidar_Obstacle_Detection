@@ -100,9 +100,9 @@ std::pair<typename pcl::PointCloud<PointT>::Ptr, typename pcl::PointCloud<PointT
     auto startTime = std::chrono::steady_clock::now();
 
     std::unordered_set<int> inliersResult;
-	srand(time(NULL));
+    srand(time(NULL));
 
-	// Return indicies of inliers from fitted line with most inliers
+	// Return indicies of inliers from fitted plane with most inliers
 	while(maxIterations--)
 	{
 		// Randomly sampling three points to fit a plane model
